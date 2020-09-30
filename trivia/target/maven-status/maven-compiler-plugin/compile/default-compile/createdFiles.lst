@@ -1,0 +1,8 @@
+com/example/trivia/configs/FilterBeansConfiguration.class
+com/example/trivia/models/PreguntasExistentes.class
+com/example/trivia/controllers/PreguntasExistentesController.class
+com/example/trivia/controllers/TriviaController.class
+com/example/trivia/repositories/PreguntasExistentesRepository.class
+com/example/trivia/models/Trivia.class
+com/example/trivia/repositories/TriviaRepository.class
+com/example/trivia/TriviaApplication.class

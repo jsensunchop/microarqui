@@ -1,0 +1,9 @@
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/models/PreguntasExistentes.java
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/configs/MongoConfig.java
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/controllers/PreguntasExistentesController.java
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/models/Trivia.java
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/TriviaApplication.java
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/repositories/TriviaRepository.java
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/configs/FilterBeansConfiguration.java
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/controllers/TriviaController.java
+/home/davsatu313/Documents/microarqui/trivia/src/main/java/com/example/trivia/repositories/PreguntasExistentesRepository.java
