@@ -1,0 +1,425 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for enseniamela notifications
+  description: Spring boot + Mongodb
+  license:
+    name: Software Architecture, 2020-I
+host: localhost:5004
+basePath: /trivia/
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /trivia:
+    post:
+      summary: Creates a new trivia
+      operationId: createTrivia
+      parameters:
+        - name: trivia
+          in: body
+          required: true
+          description: Trivia Object
+          schema:
+            $ref: '#/definitions/Trivia'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Trivia'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Trivia'
+  /trivia/all:
+    get:
+      summary: Returns all the trivias
+      operationId: getAllTrivia
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Trivia'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Trivia'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/Trivia'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Trivia'
+  /trivia/{id}:
+    get:
+      summary: Returns all the trivias with that id
+      operationId: getTriviaById
+      parameters:
+        - name: id
+          in: path
+          description: The id of the trivia to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Trivia'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Trivia'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/Trivia'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Trivia'
+    put:
+      summary: update the trivia with that id
+      operationId: modifyTriviaById
+      parameters:
+        - name: id
+          in: path
+          description: The id of the trivia to be updated
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Trivia'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Trivia'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/Trivia'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Trivia'
+    delete:
+      summary: delete the notification whit that id
+      operationId: deleteNotification
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be deleted
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Notification'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Notification'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/Notification'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Notification'
+  /trivia/toUser/{id}:
+    get:
+      summary: Returns the trivia whit that toUserid
+      operationId: getByToUser
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Trivia'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Trivia'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/Trivia'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Trivia'
+  /trivia/fromUser/{id}:
+    get:
+      summary: Returns the trivia whit that fromUserid
+      operationId: getByFromUser
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Trivia'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Trivia'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/Trivia'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Trivia'
+  /trivia/toUserAndStatus/{toUserId}/{status}:
+      get:
+        summary: Returns the trivia whit that fromUserid and status
+        operationId: findByToUserIdAndStatus
+        parameters:
+          - name: toUserId
+            in: path
+            description: The toUserId of the user to be returned
+            required: true
+            type: string
+          - name: status
+            in: path
+            description: The status of the trivia to be returned
+            required: true
+            type: string
+        responses:
+          '200':
+            description: Ok
+            schema:
+              $ref: '#/definitions/Trivia'
+          '404':
+            description: Not Found
+            schema:
+              $ref: '#/definitions/Trivia'
+          '406':
+              description: Not Acceptable (Invalid Params)
+              schema:
+                $ref: '#/definitions/Trivia'
+          '500':
+            description: unexpected error
+            schema:
+              $ref: '#/definitions/Trivia'
+  /trivia/fromUserAndStatus/{fromUserId}/{status}:
+      get:
+        summary: Returns the trivia whit that fromUserId and status
+        operationId: findByFromUserIdAndStatus
+        parameters:
+          - name: fromUserId
+            in: path
+            description: The fromUserId of the user to be returned
+            required: true
+            type: string
+          - name: status
+            in: path
+            description: The status of the trivia to be returned
+            required: true
+            type: string
+        responses:
+          '200':
+            description: Ok
+            schema:
+              $ref: '#/definitions/Trivia'
+          '404':
+            description: Not Found
+            schema:
+              $ref: '#/definitions/Trivia'
+          '406':
+              description: Not Acceptable (Invalid Params)
+              schema:
+                $ref: '#/definitions/Trivia'
+          '500':
+            description: unexpected error
+            schema:
+              $ref: '#/definitions/Trivia'
+
+
+  /preguntas:
+
+  /all:
+    get:
+      summary: Returns all the questions
+      operationId: getAllQuestions
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Question'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Question'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/Question'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Question'
+  /{id}:
+    get:
+      summary: Returns the questions whit that id
+      operationId: getQuestionById
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Question'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Question'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/Question'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Question'
+
+
+  /toUser/{id}:
+    get:
+      summary: Returns the question whit that toUserid
+      operationId: getByToUser
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Question'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Question'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/Question'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Question'
+  /fromUser/{id}:
+    get:
+      summary: Returns the question whit that fromUserid
+      operationId: getByFromUser
+      parameters:
+        - name: id
+          in: path
+          description: The id of the user to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Question'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Question'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/Question'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Question'
+
+definitions:
+  # Trivia
+  Trivia:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      description:
+        type: string
+      toUserId:
+        type: string
+      fromUserId:
+        type: string
+      creationDate:
+        type: string
+      status:
+        type: string
+
+
+  Preguntas:
+    type: object
+    properties:
+      title:
+        type: string
+      questionCategory:
+        type: string
+      questionImage:
+        type: string
+      question:
+        type: string
+      optionA:
+        type: string
+      optionB:
+        type: string
+      optionC:
+        type: string
+      optionD:
+        type: string
+      answer:
+        type: string
+      creationDate:
+        type: Date
+      updateDate:
+        type: Date
